@@ -1,0 +1,334 @@
+/* General Styles */
+body {
+    font-family: 'Poppins', Arial, sans-serif;
+    background-color: #f8f9fa;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Invoice Container */
+.invoice-container {
+    max-width: 1600px;
+    width: 100%;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+    border: 1px solid #ddd;
+}
+
+/* Headings */
+h2, h3, h4 {
+    text-align: center;
+    color: #333;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+/* Invoice Header */
+.invoice-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    border-bottom: 2px solid #007BFF;
+    padding-bottom: 15px;
+}
+
+.invoice-logo img {
+    max-width: 150px;
+}
+
+.invoice-title {
+    font-size: 30px;
+    color: #007BFF;
+    font-weight: bold;
+}
+
+/* Invoice Details Section */
+.invoice-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.invoice-details label {
+    font-weight: 500;
+    font-size: 18px;
+    color: #555;
+}
+
+.invoice-details input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 17px;
+    background: #f9f9f9;
+    transition: border 0.3s ease;
+}
+
+.invoice-details input:focus {
+    border: 1px solid #007BFF;
+    outline: none;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background: white;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 12px;
+    text-align: center;
+    font-size: 16px;
+}
+
+th {
+    background: #007BFF;
+    color: white;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+td {
+    background: #f8f9fa;
+}
+
+/* Totals Section */
+.total-section {
+    margin-top: 25px;
+    padding: 15px;
+    background: #f1f1f1;
+    border-radius: 8px;
+    font-size: 18px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Buttons */
+button {
+    display: inline-block;
+    width: auto;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    margin: 5px;
+}
+
+.add-btn {
+    background: #28a745;
+    color: white;
+}
+
+.print-btn {
+    background: #007BFF;
+    color: white;
+}
+
+.pdf-btn {
+    background: #dc3545;
+    color: white;
+}
+
+button:hover {
+    transform: scale(1.05);
+}
+
+/* Summary Section */
+.summary-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 25px;
+    width: 100%;
+    gap: 25px;
+}
+
+/* Bank Details */
+.bank-details {
+    flex: 1;
+    padding: 15px;
+    text-align: left;
+    background: #f9f9f9;
+    border-radius: 8px;
+    font-size: 16px;
+}
+
+/* Signature Section */
+.sign-section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 30px;
+    font-weight: bold;
+    position: relative;
+}
+
+.receiver-sign, .seller-sign {
+    flex: 1;
+    padding-top: 40px;
+    text-align: center;
+    font-size: 16px;
+    border-top: 2px solid #333;
+}
+
+/* Print Styles */
+@media print {
+    .invoice-container {
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+        box-shadow: none;
+    }
+    button {
+        display: none;
+    }
+}
+
+/* Address Section */
+.address-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: #f1f1f1;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    gap: 20px;
+}
+
+/* Address Box */
+.address-box {
+    flex: 1;
+    padding: 15px;
+    background: white;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.address-box h4 {
+    font-size: 18px;
+    color: #007BFF;
+    font-weight: 600;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #007BFF;
+    padding-bottom: 5px;
+}
+
+.address-box p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin: 5px 0;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .address-section {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+/* Business Contact & Address */
+.business-info {
+    text-align: left;
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    background: #f9f9f9;
+    padding: 10px;
+    border-radius: 5px;
+    border-left: 5px solid #007BFF;
+}
+
+/* Bank Details & Receiver’s Signature */
+.bank-signature-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 20px;
+    padding: 15px;
+    background: #f1f1f1;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+.bank-details {
+    flex: 1;
+    text-align: left;
+    font-weight: bold;
+    line-height: 1.6;
+}
+
+.receiver-sign {
+    flex: 1;
+    text-align: right;
+    font-weight: bold;
+}
+
+/* Signature Line */
+.signature-line {
+    display: block;
+    margin-top: 10px;
+    width: 150px;
+    border-top: 1px solid #333;
+}
+
+.receiver-signature {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: bold;
+    font-size: 14px;
+    margin-top: 20px;
+}
+
+.signature-line {
+    display: inline-block;
+    width: 150px;
+    border-top: 1px solid #333;
+    margin-left: 10px;
+}
+
+.for-company {
+    text-align: right;
+    flex-grow: 1;
+    padding-left: 20px; /* Ensures some spacing from the signature */
+}
+
+.address-input {
+    width: 200px; /* Match other input widths */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+    height: 50px; /* Allow space for multiple lines */
+    resize: none; /* Prevent manual resizing */
+    overflow-y: auto; /* Show scrollbar if needed */
+    display: block; /* Ensures proper alignment */
+    line-height: 1.2; /* Adjust line spacing */
+  }
+  

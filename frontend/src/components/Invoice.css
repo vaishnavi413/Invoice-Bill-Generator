@@ -1,0 +1,164 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Invoice Container */
+.invoice-container {
+    max-width: 1000px;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: #fff;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    font-family: Arial, sans-serif;
+}
+
+/* Headings */
+h2, h3, h4 {
+    text-align: center;
+    color: #333;
+    font-weight: bold;
+}
+
+/* Invoice Details Section */
+.invoice-details {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.invoice-details label {
+    font-weight: bold;
+    font-size: 18px;
+    color: #444;
+}
+
+.invoice-details input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background: #f9f9f9;
+}
+
+/* Table Styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+th {
+    background: #007BFF;
+    color: white;
+    font-weight: bold;
+}
+
+td {
+    background: #f8f9fa;
+}
+
+/* Totals */
+.total-section {
+    margin-top: 20px;
+    padding: 10px;
+    background: #f8f8f8;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/* Buttons */
+button {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s;
+}
+
+.add-btn {
+    background: #28a745;
+    color: white;
+}
+
+.print-btn {
+    background: #007BFF;
+    color: white;
+}
+
+.pdf-btn {
+    background: #dc3545;
+    color: white;
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+/* Summary Section */
+.summary-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 20px;
+    width: 100%;
+    gap: 20px;
+}
+
+/* Bank Details */
+.bank-details {
+    flex: 1;
+    padding: 10px;
+    text-align: left;
+}
+
+/* Signature Section */
+.sign-section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 20px;
+    font-weight: bold;
+    position: relative;
+}
+
+.receiver-sign {
+    text-align: left;
+    flex: 1;
+}
+
+.seller-sign {
+    text-align: right;
+    flex: 1;
+}
+
+/* Print Styles */
+@media print {
+    .invoice-container {
+        width: 100%;
+        max-width: 800px;
+        margin: auto;
+    }
+    button {
+        display: none;
+    }
+}
