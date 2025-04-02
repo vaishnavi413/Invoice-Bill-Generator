@@ -1,9 +1,18 @@
 import express from "express";
 import mongoose from "mongoose";
+import dotenv from "dotenv";
 import cors from "cors";
 import pdf from "html-pdf";
 import fs from "fs";
 import Invoice from "./models/Invoice.js"; // Ensure Invoice model uses ES Module
+
+dotenv.config();
+
+const mongoURI = process.env.MONGO_URI;
+
+mongoose.connect(mongoURI)
+  .then(() => console.log("MongoDB Connected Successfully"))
+  .catch((err) => console.error("MongoDB Connection Error:", err));
 
 const app = express();
 const PORT = 8080;
