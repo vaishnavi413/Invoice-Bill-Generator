@@ -1,4 +1,5 @@
 import express from "express";
+<<<<<<< Updated upstream
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
@@ -98,3 +99,53 @@ app.get("/api/invoices/:id/pdf", async (req, res) => {
 
 // Start Server
 app.listen(PORT, () => console.log(`🚀 Invoice API running on port ${PORT}`));
+=======
+import fs from "fs";
+import path from "path";
+
+const app = express();
+app.use(express.json());
+
+const DATA_DIR = "C:/invoice-data";
+const DATA_FILE = path.join(DATA_DIR, "invoices.json");
+
+// Ensure directory exists
+if (!fs.existsSync(DATA_DIR)) {
+  fs.mkdirSync(DATA_DIR, { recursive: true });
+}
+
+// Load existing invoices
+let invoices = [];
+if (fs.existsSync(DATA_FILE)) {
+  invoices = JSON.parse(fs.readFileSync(DATA_FILE, "utf-8"));
+}
+
+// Function to save data
+const saveData = () => {
+  fs.writeFileSync(DATA_FILE, JSON.stringify(invoices, null, 2));
+};
+
+// API to Add a New Invoice
+app.post("/add-invoice", (req, res) => {
+  const invoice = req.body;
+  invoices.push(invoice);
+  saveData();
+  res.status(201).send({ message: "Invoice saved successfully!", invoice });
+});
+
+// API to Get All Invoices
+app.get("/invoices", (req, res) => {
+  res.json(invoices);
+});
+
+// API to Delete Old Invoices (if storage is near 5GB)
+app.delete("/clear-old-invoices", (req, res) => {
+  invoices = invoices.slice(-1000); // Keep last 1000 invoices
+  saveData();
+  res.send({ message: "Old invoices cleared!" });
+});
+
+app.listen(8080, () => {
+  console.log("✅ Invoice API running offline on port 8080");
+});
+>>>>>>> Stashed changes
