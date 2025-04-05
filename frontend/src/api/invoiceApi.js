@@ -1,6 +1,7 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:8080/api/invoices"; // Backend API URL
+const API_URL = "https://invoice-bill-generator-backend.onrender.com
+"; // Backend API URL
 
 export const fetchInvoices = async () => {
   try {
