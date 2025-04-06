@@ -1,5 +1,4 @@
 import express from "express";
-<<<<<<< Updated upstream
 import mongoose from "mongoose";
 import dotenv from "dotenv";
 import cors from "cors";
