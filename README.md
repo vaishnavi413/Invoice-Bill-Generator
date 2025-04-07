@@ -44,7 +44,7 @@ An end-to-end **Invoice Generator** web application built with **Node.js**, **Ex
 
 ## ⚙️ Setup Instructions
 
-### 1. Clone the repository
+ 1. Clone the repository
 
 ```bash
 git clone https://github.com/your-username/invoice-generator.git
