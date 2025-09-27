@@ -26,27 +26,33 @@ const InvoiceGenerator = () => {
   const [clientName, setClientName] = useState("");
   const [clientGST, setClientGST] = useState("");
   const [clientAddress, setClientAddress] = useState("");
-  const [items, setItems] = useState([{ id: 1, particulars: "", qty: "", rate: "", amount: 0 }]);
+  const [items, setItems] = useState([
+    { id: 1, particulars: "", hsn: "", qty: "", rate: "", amount: 0 }
+  ]);
 
   // Handle item changes
   const handleItemChange = (index, field, value) => {
     const newItems = [...items];
-    newItems[index][field] = field === "qty" || field === "rate" ? parseFloat(value) || 0 : value;
+    newItems[index][field] =
+      field === "qty" || field === "rate" ? parseFloat(value) || 0 : value;
     newItems[index].amount = newItems[index].qty * newItems[index].rate;
     setItems(newItems);
   };
 
-  const addItem = () => setItems([...items, { id: items.length + 1, particulars: "", qty: 0, rate: 0, amount: 0 }]);
+  const addItem = () =>
+    setItems([
+      ...items,
+      { id: items.length + 1, particulars: "", hsn: "", qty: 0, rate: 0, amount: 0 }
+    ]);
 
   const deleteItem = (id) => setItems(items.filter(item => item.id !== id));
 
- const calculateTotals = () => {
-  const subtotal = items.reduce((sum, item) => sum + item.amount, 0);
-  const cgst = subtotal * 0.09;   // 9% CGST
-  const sgst = subtotal * 0.09;   // 9% SGST
-  return { subtotal, cgst, sgst, grandTotal: subtotal + cgst + sgst };
-};
-
+  const calculateTotals = () => {
+    const subtotal = items.reduce((sum, item) => sum + item.amount, 0);
+    const cgst = subtotal * 0.09;   // 9% CGST
+    const sgst = subtotal * 0.09;   // 9% SGST
+    return { subtotal, cgst, sgst, grandTotal: subtotal + cgst + sgst };
+  };
 
   const saveBill = () => {
     const billData = { invoiceNo, invoiceDate, clientName, clientGST, clientAddress, items, totals: calculateTotals() };
@@ -55,7 +61,7 @@ const InvoiceGenerator = () => {
     localStorage.setItem("bills", JSON.stringify(savedBills));
     localStorage.setItem("invoiceNo", (invoiceNo + 1).toString()); // Increment invoice number
     setInvoiceNo(invoiceNo + 1);
-    setItems([{ id: 1, particulars: "", qty: 0, rate: 0, amount: 0 }]);
+    setItems([{ id: 1, particulars: "", hsn: "", qty: 0, rate: 0, amount: 0 }]);
     setClientName("");
     setClientGST("");
     setClientAddress("");
@@ -134,17 +140,16 @@ const InvoiceGenerator = () => {
         <label>Invoice No: {invoiceNo}</label>
         <label>To: <input type="text" value={clientName} onChange={(e) => setClientName(e.target.value)} /></label>
         <label>GST No: 
-  <input 
-    type="text" 
-    value={clientGST} 
-    onChange={(e) => setClientGST(e.target.value.toUpperCase())} 
-    pattern="^([0-3][0-9])[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$"
-    title="Enter a valid GSTIN (15 characters: e.g., 27APKPN1685B1ZU)" 
-    maxLength="15"
-    required
-  />
-</label>
-
+          <input 
+            type="text" 
+            value={clientGST} 
+            onChange={(e) => setClientGST(e.target.value.toUpperCase())} 
+            pattern="^([0-3][0-9])[A-Z]{5}[0-9]{4}[A-Z][1-9A-Z]Z[0-9A-Z]$"
+            title="Enter a valid GSTIN (15 characters: e.g., 27APKPN1685B1ZU)" 
+            maxLength="15"
+            required
+          />
+        </label>
         <label>
           Address: 
           <textarea 
@@ -154,16 +159,15 @@ const InvoiceGenerator = () => {
           />
         </label>
         <label>Date: 
-  <input 
-    type="date" 
-    value={invoiceDate} 
-    onChange={(e) => setInvoiceDate(e.target.value)} 
-    min="2025-04-01" 
-    max="2026-03-31" 
-    required 
-  />
-</label>
-
+          <input 
+            type="date" 
+            value={invoiceDate} 
+            onChange={(e) => setInvoiceDate(e.target.value)} 
+            min="2025-04-01" 
+            max="2026-03-31" 
+            required 
+          />
+        </label>
       </div>
       
       <table>
@@ -171,6 +175,7 @@ const InvoiceGenerator = () => {
           <tr>
             <th>Sr. No</th>
             <th>Particulars</th>
+            <th>HSN / SAC</th>
             <th>Qty</th>
             <th>Rate</th>
             <th>Amount</th>
@@ -181,9 +186,34 @@ const InvoiceGenerator = () => {
           {items.map((item, index) => (
             <tr key={item.id}>
               <td>{item.id}</td>
-              <td><input type="text" value={item.particulars} onChange={(e) => handleItemChange(index, "particulars", e.target.value)} /></td>
-              <td><input type="number" value={item.qty} onChange={(e) => handleItemChange(index, "qty", e.target.value)} /></td>
-              <td><input type="number" value={item.rate} onChange={(e) => handleItemChange(index, "rate", e.target.value)} /></td>
+              <td>
+                <input 
+                  type="text" 
+                  value={item.particulars} 
+                  onChange={(e) => handleItemChange(index, "particulars", e.target.value)} 
+                />
+              </td>
+              <td>
+                <input 
+                  type="text" 
+                  value={item.hsn} 
+                  onChange={(e) => handleItemChange(index, "hsn", e.target.value)} 
+                />
+              </td>
+              <td>
+                <input 
+                  type="number" 
+                  value={item.qty} 
+                  onChange={(e) => handleItemChange(index, "qty", e.target.value)} 
+                />
+              </td>
+              <td>
+                <input 
+                  type="number" 
+                  value={item.rate} 
+                  onChange={(e) => handleItemChange(index, "rate", e.target.value)} 
+                />
+              </td>
               <td>{item.amount.toFixed(2)}</td>
               <td><button onClick={() => deleteItem(item.id)}>Delete</button></td>
             </tr>
@@ -195,16 +225,16 @@ const InvoiceGenerator = () => {
       <button onClick={saveBill}>Save Bill</button>
       <button onClick={() => navigate("/previous-bills")}>Show Previous Bills</button>
 
-
       <div className="summary-container">
-      <table>
-  <tr><td>Subtotal:</td><td>{calculateTotals().subtotal.toFixed(2)}</td></tr>
-  <tr><td>CGST @ 9%:</td><td>{calculateTotals().cgst.toFixed(2)}</td></tr>
-  <tr><td>SGST @ 9%:</td><td>{calculateTotals().sgst.toFixed(2)}</td></tr>
-  <tr><td><b>Grand Total:</b></td><td><b>{calculateTotals().grandTotal.toFixed(2)}</b></td></tr>
-  <tr><td><b>Amount in Words:</b></td><td><b>{numberToWords(calculateTotals().grandTotal)}</b></td></tr>
-</table>
-
+        <table>
+          <tbody>
+            <tr><td>Subtotal:</td><td>{calculateTotals().subtotal.toFixed(2)}</td></tr>
+            <tr><td>CGST @ 9%:</td><td>{calculateTotals().cgst.toFixed(2)}</td></tr>
+            <tr><td>SGST @ 9%:</td><td>{calculateTotals().sgst.toFixed(2)}</td></tr>
+            <tr><td><b>Grand Total:</b></td><td><b>{calculateTotals().grandTotal.toFixed(2)}</b></td></tr>
+            <tr><td><b>Amount in Words:</b></td><td><b>{numberToWords(calculateTotals().grandTotal)}</b></td></tr>
+          </tbody>
+        </table>
       </div>
       
       <div className="bank-details">
