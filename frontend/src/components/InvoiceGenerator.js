@@ -3,7 +3,7 @@ import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import { useNavigate } from 'react-router-dom'; // Corrected hook for navigation
 import "../components/InvoiceGenerator.css";
-import logo from "../assets/Sadguru Cloth Center.jpg";
+import logo from "../assets/shreeg.png";
 
 const InvoiceGenerator = () => {
   const navigate = useNavigate(); // Initialize the navigate hook
@@ -122,10 +122,10 @@ const InvoiceGenerator = () => {
             />
           </div>
           <h3>Tax Invoice</h3>
-          <p>Mob: 9881454802, 9021554700 | Office: 26351192 | Res.: 26336215</p>
-          <p>Branch: 264, Nana Peth, Near Nana Peth Bhaji Mandai, Pune-411002</p>
-          <p>Head Office: 617, Rasta Peth, Near Parsi Agyari, Pune-411011</p>
-          <p>GSTIN: 27APKPN1685B1ZU</p>
+          <p>Mob: 9850111166</p>
+          <p>E-mail Id:- shrigenterprises25@gmail.com</p>
+          <p>Branch: S.No.371, Flat No.20, Unity Park, Somwar Peth, Narpatgiri Chowk,Above HDFC Bank,Pune 411011.</p>
+          <p>GSTIN: 27AJIPG2516N1Z2</p>
         </div>
       </div>
       
@@ -207,14 +207,14 @@ const InvoiceGenerator = () => {
       </div>
       
       <div className="bank-details">
-        <p><b>Bank: Punjab National Bank</b></p>
-        <p>A/C No. & Type: 2901002100032112 (Current)</p>
-        <p>Account Name: Sadguru Cloth Center and Tailor</p>
-        <p>Branch: Nana Peth</p>
-        <p>IFSC: PUNB0290100</p>
+        <p><b>HDFC BANK</b></p>
+        <p>A/C No. & Type: 50200095196440 (Current)</p>
+        <p>Account Name: SHRI G ENTERPRISES</p>
+        <p>Branch: Somwar Peth</p>
+        <p>IFSC: HDFC0005383</p>
         <div className="receiver-signature">
           <span>Receiver's Sign: <span className="signature-line"></span></span>
-          <span className="for-company">For Sadguru Cloth Center</span>
+          <span className="for-company">SHRI G ENTERPRISES</span>
         </div>
       </div>
     </div>
