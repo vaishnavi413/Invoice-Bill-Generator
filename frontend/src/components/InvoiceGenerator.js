@@ -3,7 +3,7 @@ import { jsPDF } from "jspdf";
 import autoTable from "jspdf-autotable";
 import { useNavigate } from 'react-router-dom'; // Corrected hook for navigation
 import "../components/InvoiceGenerator.css";
-import logo from "../assets/shreeg.png";
+import logo from "../assets/shrig.jpeg";
 
 const InvoiceGenerator = () => {
   const navigate = useNavigate(); // Initialize the navigate hook
@@ -40,12 +40,13 @@ const InvoiceGenerator = () => {
 
   const deleteItem = (id) => setItems(items.filter(item => item.id !== id));
 
-  const calculateTotals = () => {
-    const subtotal = items.reduce((sum, item) => sum + item.amount, 0);
-    const cgst = subtotal * 0.025;
-    const sgst = subtotal * 0.025;
-    return { subtotal, cgst, sgst, grandTotal: subtotal + cgst + sgst };
-  };
+ const calculateTotals = () => {
+  const subtotal = items.reduce((sum, item) => sum + item.amount, 0);
+  const cgst = subtotal * 0.09;   // 9% CGST
+  const sgst = subtotal * 0.09;   // 9% SGST
+  return { subtotal, cgst, sgst, grandTotal: subtotal + cgst + sgst };
+};
+
 
   const saveBill = () => {
     const billData = { invoiceNo, invoiceDate, clientName, clientGST, clientAddress, items, totals: calculateTotals() };
@@ -122,9 +123,9 @@ const InvoiceGenerator = () => {
             />
           </div>
           <h3>Tax Invoice</h3>
-          <p>Mob: 9850111166</p>
-          <p>E-mail Id:- shrigenterprises25@gmail.com</p>
           <p>Branch: S.No.371, Flat No.20, Unity Park, Somwar Peth, Narpatgiri Chowk,Above HDFC Bank,Pune 411011.</p>
+          <p>E-mail Id:- shrigenterprises25@gmail.com</p>
+          <p>Mob: 9850111166</p>
           <p>GSTIN: 27AJIPG2516N1Z2</p>
         </div>
       </div>
@@ -198,8 +199,8 @@ const InvoiceGenerator = () => {
       <div className="summary-container">
       <table>
   <tr><td>Subtotal:</td><td>{calculateTotals().subtotal.toFixed(2)}</td></tr>
-  <tr><td>CGST @ 2.5%:</td><td>{calculateTotals().cgst.toFixed(2)}</td></tr>
-  <tr><td>SGST @ 2.5%:</td><td>{calculateTotals().sgst.toFixed(2)}</td></tr>
+  <tr><td>CGST @ 9%:</td><td>{calculateTotals().cgst.toFixed(2)}</td></tr>
+  <tr><td>SGST @ 9%:</td><td>{calculateTotals().sgst.toFixed(2)}</td></tr>
   <tr><td><b>Grand Total:</b></td><td><b>{calculateTotals().grandTotal.toFixed(2)}</b></td></tr>
   <tr><td><b>Amount in Words:</b></td><td><b>{numberToWords(calculateTotals().grandTotal)}</b></td></tr>
 </table>
