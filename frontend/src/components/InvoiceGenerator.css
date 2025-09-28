@@ -19,6 +19,10 @@ body {
     border-radius: 12px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
     border: 1px solid #ddd;
+
+    /* ✅ Auto height so container grows with rows */
+    height: auto;
+    min-height: 100%;
 }
 
 /* Headings */
@@ -193,10 +197,22 @@ button:hover {
 @media print {
     .invoice-container {
         width: 100%;
-        max-width: 800px;
-        margin: auto;
+        max-width: 100%;
+        height: auto !important; 
+        width: auto !important;   /* ✅ ensure full height on print */
         box-shadow: none;
+        margin: auto;
     }
+
+    table {
+        page-break-inside: auto;   /* ✅ rows won’t split across pages */
+    }
+
+    tr {
+        page-break-inside: avoid;
+        page-break-after: auto;
+    }
+
     button {
         display: none;
     }
@@ -331,4 +347,16 @@ button:hover {
     display: block; /* Ensures proper alignment */
     line-height: 1.2; /* Adjust line spacing */
   }
-  
+
+
+  .gst-selection label {
+  margin-right: 15px;
+  cursor: pointer;
+  font-weight: 500;
+  color: #333;
+}
+
+.gst-selection input[type="radio"] {
+  margin-right: 5px;
+  accent-color: #ff4c4c;
+}

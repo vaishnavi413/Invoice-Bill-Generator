@@ -4,6 +4,7 @@ const InvoiceSchema = new mongoose.Schema({
     customerName: String,
     gstNumber: String,
     address: String,
+    poNumber: String, // Added PO Number field
     invoiceNumber: Number,
     items: [
         {
